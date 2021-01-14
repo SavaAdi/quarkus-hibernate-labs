@@ -1,0 +1,32 @@
+package com.adisava.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+@Entity
+public class Gift {
+
+    private Long id;
+    private String name;
+
+    @Id
+    @SequenceGenerator(name = "giftSeq", sequenceName = "gift_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(generator = "giftSeq")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

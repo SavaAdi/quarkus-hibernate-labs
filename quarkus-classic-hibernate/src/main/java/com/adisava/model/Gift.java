@@ -1,26 +1,13 @@
 package com.adisava.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Gift {
+public class Gift extends BaseEntity{
 
-    private Long id;
+    private static final long serialVersionUID = 3983596550328295546L;
+
     private String name;
-
-    @Id
-    @SequenceGenerator(name = "giftSeq", sequenceName = "gift_id_seq", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(generator = "giftSeq")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -28,5 +15,20 @@ public class Gift {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Gift gift = (Gift) o;
+
+        return getName().equals(gift.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return getName().hashCode();
     }
 }

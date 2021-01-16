@@ -9,8 +9,6 @@ import javax.ws.rs.core.MediaType;
 
 
 @Path("/gifts")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class GiftResource {
 
     @Inject
@@ -18,12 +16,12 @@ public class GiftResource {
 
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String addGift(String giftDescription){
         santaClausService.createGift(giftDescription);
         return giftDescription;
     }
 
-//    Odd bug
     @GET
     @Path("/{giftId}")
     @Produces(MediaType.APPLICATION_JSON)

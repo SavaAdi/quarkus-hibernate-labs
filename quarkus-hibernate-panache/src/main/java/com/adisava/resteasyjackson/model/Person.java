@@ -22,9 +22,8 @@ public class Person extends PanacheEntity {
         return list("status", Status.ALIVE);
     }
 
-    public static Person addPerson(Person person) {
+    public static void addPerson(Person person) {
         person.persist();
-        return person;
     }
 
     public static void deleteStefs(){

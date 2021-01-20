@@ -3,11 +3,13 @@ package com.adisava.resteasyjackson.resource;
 import com.adisava.resteasyjackson.enums.Status;
 import com.adisava.resteasyjackson.model.Person;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.time.LocalDate;
 
+@ApplicationScoped
 @Path("/person")
 public class PersonResource {
 

@@ -5,20 +5,40 @@ import com.adisava.resteasyjackson.model.Person;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import java.time.LocalDate;
 
 @ApplicationScoped
 @Path("/person")
 public class PersonResource {
 
-    @Transactional
     @POST
+    @Transactional
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public void savePerson(Person person) {
+    public Response createDeveloper(@Valid Person person) {
         person.persist();
+
+        return Response.created(
+                UriBuilder
+                        .fromResource(PersonResource.class)
+                        .path(person.name)
+                        .build()
+        )
+                .entity(person)
+                .build();
     }
+
+//    @Transactional
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void savePerson(Person person) {
+//        person.persist();
+//    }
 
     @Transactional
     @GET

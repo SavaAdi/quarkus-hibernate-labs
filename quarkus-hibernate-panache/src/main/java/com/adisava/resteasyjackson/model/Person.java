@@ -7,12 +7,16 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 public class Person extends PanacheEntity {
 
+    @Size(min = 2)
+    @NotBlank
     public String name;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
